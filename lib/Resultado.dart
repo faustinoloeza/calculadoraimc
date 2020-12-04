@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'Tarjeta.dart';
 import 'TarjetaInferior.dart';
 import 'constantes.dart';
 
 class Resultado extends StatelessWidget {
+  Resultado({@required this.resultado, @required this.mensaje});
+
+  final String resultado;
+  final String mensaje;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,27 +28,22 @@ class Resultado extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "NORMAL",
+                        mensaje,
                         style: kMyStyleTextBig,
                       ),
                       Text(
-                        "26.3",
+                        resultado,
                         style: kMyStyleTextBig,
                       ),
                     ],
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
+              TarjetaInferior(
+                myText: "RE-CALCULAR",
+                myFunction: () {
                   Navigator.pop(context);
                 },
-                child: TarjetaInferior(
-                  myChild: Text(
-                    "RE-CALCULAR",
-                    style: kMyStyleButtonCard,
-                  ),
-                ),
               ),
             ],
           ),

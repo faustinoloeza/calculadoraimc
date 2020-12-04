@@ -1,3 +1,4 @@
+import 'package:calbmi/Resultado.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'CardChild.dart';
@@ -5,6 +6,7 @@ import 'Tarjeta.dart';
 import 'TarjetaInferior.dart';
 import 'constantes.dart';
 import 'MyIconButton.dart';
+import 'Calculos.dart';
 
 enum Gender {
   MALE,
@@ -20,7 +22,7 @@ class Calculadora extends StatefulWidget {
 
 class _CalculadoraState extends State<Calculadora> {
   Gender myGender = Gender.MALE;
-  int currentSliderValue = 180;
+  int myAltura = 180;
   int pesoInicial = 75;
   int edadInicial = 30;
   @override
@@ -90,7 +92,7 @@ class _CalculadoraState extends State<Calculadora> {
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       children: [
                         Text(
-                          currentSliderValue.toString(),
+                          myAltura.toString(),
                           style: kMyStyleTextBig,
                         ),
                         Text(
@@ -108,15 +110,15 @@ class _CalculadoraState extends State<Calculadora> {
                             RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
-                        value: currentSliderValue.toDouble(),
+                        value: myAltura.toDouble(),
                         min: 50.0,
                         max: 220.0,
                         activeColor: myActiveButonColor,
                         inactiveColor: Colors.white,
-                        label: currentSliderValue.toString(),
+                        label: myAltura.toString(),
                         onChanged: (double value) {
                           setState(() {
-                            currentSliderValue = value.toInt();
+                            myAltura = value.toInt();
                           });
                         },
                       ),
@@ -247,16 +249,23 @@ class _CalculadoraState extends State<Calculadora> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/resultado');
+            TarjetaInferior(
+              myText: "CALCULAR",
+              myFunction: () {
+                Calulos resultado = Calulos(
+                  altura: myAltura,
+                  peso: pesoInicial,
+                );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Resultado(
+                      resultado: resultado.getIMC(),
+                      mensaje: resultado.getStatus(),
+                    ),
+                  ),
+                );
               },
-              child: TarjetaInferior(
-                myChild: Text(
-                  "CALCULAR",
-                  style: kMyStyleButtonCard,
-                ),
-              ),
             ),
           ],
         ),
