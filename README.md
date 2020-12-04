@@ -8,6 +8,6 @@ This project is a starting point for a Flutter application.
 
 |                   |                   |
 | ----------------- | ----------------- |
-| ![](img/bmi1.jpg) | ![](img/bmi2.jpg) |
+| ![](img/bmi1.png) | ![](img/bmi2.png) |
 
 

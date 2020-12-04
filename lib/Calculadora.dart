@@ -82,6 +82,7 @@ class _CalculadoraState extends State<Calculadora> {
               child: Tarjeta(
                 myChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "ALTURA",
